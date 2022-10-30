@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">SchizoBasedApp</string>
+    <string name="dummy_button">Schizo Button</string>
+
+    <string name="fog_is_coming">fog is\ncoming</string>
+
+    <string name="title_activity_anti_babylon">AntiBabylon</string>
+    <string name="anti_babylon_image">Anti Babylon Image</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+</resources>

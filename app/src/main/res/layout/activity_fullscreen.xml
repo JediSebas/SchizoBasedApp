@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/fullscreenBackgroundColor"
+    android:theme="@style/ThemeOverlay.SchizoBasedApp.FullscreenContainer"
+    tools:context=".FullscreenActivity">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/fullscreenContent"
+            android:layout_gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/fogBtn1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:text="@string/fog_is_coming"
+                app:layout_constraintEnd_toStartOf="@+id/fogBtn2"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="DuplicateSpeakableTextCheck" />
+
+            <Button
+                android:id="@+id/fogBtn2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:text="@string/fog_is_coming"
+                app:layout_constraintEnd_toStartOf="@+id/fogBtn3"
+                app:layout_constraintStart_toEndOf="@+id/fogBtn1"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/fogBtn3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:text="@string/fog_is_coming"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/fogBtn2"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/fogBtn4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="64dp"
+                android:layout_marginEnd="16dp"
+                android:text="@string/fog_is_coming"
+                app:layout_constraintEnd_toStartOf="@+id/fogBtn5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/fogBtn1"
+                tools:ignore="DuplicateSpeakableTextCheck" />
+
+            <Button
+                android:id="@+id/fogBtn5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="64dp"
+                android:layout_marginEnd="16dp"
+                android:text="@string/fog_is_coming"
+                android:visibility="invisible"
+                app:layout_constraintEnd_toStartOf="@+id/fogBtn6"
+                app:layout_constraintStart_toEndOf="@+id/fogBtn4"
+                app:layout_constraintTop_toBottomOf="@id/fogBtn2" />
+
+            <Button
+                android:id="@+id/fogBtn6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="64dp"
+                android:layout_marginEnd="16dp"
+                android:text="@string/fog_is_coming"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/fogBtn5"
+                app:layout_constraintTop_toBottomOf="@id/fogBtn3" />
+
+            <Button
+                android:id="@+id/fogBtn7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="64dp"
+                android:layout_marginEnd="16dp"
+                android:text="@string/fog_is_coming"
+                app:layout_constraintEnd_toStartOf="@+id/fogBtn8"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/fogBtn4"
+                tools:ignore="DuplicateSpeakableTextCheck" />
+
+            <Button
+                android:id="@+id/fogBtn8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="64dp"
+                android:layout_marginEnd="16dp"
+                android:text="@string/fog_is_coming"
+                app:layout_constraintEnd_toStartOf="@+id/fogBtn9"
+                app:layout_constraintStart_toEndOf="@+id/fogBtn7"
+                app:layout_constraintTop_toBottomOf="@id/fogBtn5" />
+
+            <Button
+                android:id="@+id/fogBtn9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="64dp"
+                android:layout_marginEnd="16dp"
+                android:text="@string/fog_is_coming"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/fogBtn8"
+                app:layout_constraintTop_toBottomOf="@id/fogBtn6" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true">
+
+        <LinearLayout
+            android:id="@+id/fullscreenContentControls"
+            style="@style/Widget.Theme.SchizoBasedApp.ButtonBar.Fullscreen"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center_horizontal"
+            android:orientation="horizontal"
+            tools:ignore="UselessParent">
+
+            <Button
+                android:id="@+id/dummyBtn"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/dummy_button"
+                android:textColor="#80D8FF" />
+
+        </LinearLayout>
+    </FrameLayout>
+
+</FrameLayout>

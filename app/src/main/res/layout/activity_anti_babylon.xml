@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/fullscreenBackgroundColor"
+    android:theme="@style/ThemeOverlay.SchizoBasedApp.FullscreenContainer"
+    tools:context=".AntiBabylonActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/fullscreenContent"
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/antiBabylonIv"
+            android:layout_width="wrap_content"
+            android:layout_height="160dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:contentDescription="@string/anti_babylon_image"
+            android:src="@mipmap/image_anti_babylon"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ImageContrastCheck" />
+
+        <DatePicker
+            android:id="@+id/antiBabylonDp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/antiBabylonIv" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- This FrameLayout insets its children based on system windows using
+         android:fitsSystemWindows. -->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true">
+
+        <LinearLayout
+            android:id="@+id/fullscreenContentControls"
+            style="@style/Widget.Theme.SchizoBasedApp.ButtonBar.Fullscreen"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center_horizontal"
+            android:orientation="horizontal"
+            tools:ignore="UselessParent">
+
+            <Button
+                android:id="@+id/dummyBtn"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/dummy_button"
+                android:textColor="#80D8FF" />
+
+        </LinearLayout>
+    </FrameLayout>
+
+</FrameLayout>
