@@ -13,11 +13,17 @@
         android:theme="@style/Theme.SchizoBasedApp"
         tools:targetApi="31">
         <activity
+            android:name=".GoslingActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:exported="false"
+            android:label="@string/gosling"
+            android:theme="@style/Theme.SchizoBasedApp.Fullscreen" />
+        <activity
             android:name=".BatemanActivity"
-            android:screenOrientation="landscape"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:exported="false"
             android:label="@string/bateman"
+            android:screenOrientation="landscape"
             android:theme="@style/Theme.SchizoBasedApp.Fullscreen" />
         <activity
             android:name=".LiterallyMeActivity"

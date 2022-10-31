@@ -5,7 +5,6 @@ import android.annotation.SuppressLint;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -13,12 +12,13 @@ import android.os.Looper;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowInsets;
+import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.Toast;
+import android.widget.TextView;
 
-import com.jedisebas.schizobasedapp.databinding.ActivityLiterallyMeBinding;
+import com.jedisebas.schizobasedapp.databinding.ActivityGoslingBinding;
 
-public class LiterallyMeActivity extends AppCompatActivity {
+public class GoslingActivity extends AppCompatActivity {
 
     private static final boolean AUTO_HIDE = true;
     private static final int AUTO_HIDE_DELAY_MILLIS = 3000;
@@ -79,90 +79,82 @@ public class LiterallyMeActivity extends AppCompatActivity {
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        final ActivityLiterallyMeBinding binding = ActivityLiterallyMeBinding.inflate(getLayoutInflater());
+        final ActivityGoslingBinding binding = ActivityGoslingBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         mVisible = true;
         mControlsView = binding.fullscreenContentControls;
         mContentView = binding.fullscreenContent;
 
-        binding.meTv.setOnClickListener(view -> Toast.makeText(this, "Ok, you got it", Toast.LENGTH_SHORT).show());
+        final ImageView image = binding.gruIv;
+        final EditText movieEt = binding.movieEt;
 
-        final ImageView bateman = binding.batemanIv;
-        final ImageView joker = binding.jokerIv;
-        final ImageView gosling = binding.goslingIv;
-        final ImageView durden = binding.durdenIv;
+        final TextView bladeTv = binding.bladeTv;
+        final TextView driveTv = binding.driveTv;
 
-        final boolean[] entry = new boolean[] {false, false, false, false};
+        final int[] counter = {0, 0};
 
-        bateman.setOnClickListener(view -> {
-            if (entry[0]) {
-                startActivity(new Intent(this, BatemanActivity.class));
-                return;
+        Thread t = new Thread(() -> {
+            while (true) {
+                if (counter[1] == -1) {
+                    runOnUiThread(() -> image.setImageResource(R.mipmap.no_back));
+                    break;
+                } else {
+                    runOnUiThread(() -> image.setImageResource(R.mipmap.gru_two));
+                    try {
+                        Thread.sleep(100);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    runOnUiThread(() -> image.setImageResource(R.mipmap.gru_one));
+                    try {
+                        Thread.sleep(100);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
             }
-            bateman.setImageResource(R.mipmap.joker);
-            joker.setImageResource(R.mipmap.gosling);
-            gosling.setImageResource(R.mipmap.durden);
-            durden.setImageResource(R.mipmap.bateman);
-
-            entry[0] = true;
-            entry[1] = false;
-            entry[2] = false;
-            entry[3] = false;
         });
 
-        joker.setOnClickListener(view -> {
-            if (entry[1]) {
-                startActivity(new Intent());
-                return;
+        t.start();
+
+        new Thread(() -> {
+            while (true) {
+                final String movie = movieEt.getText().toString().trim().toLowerCase();
+                if (movie.equals("blade runner 2049")) {
+                    runOnUiThread(() -> {
+                        bladeTv.setVisibility(View.VISIBLE);
+                        movieEt.setText("");
+                        counter[0]++;
+                    });
+                }
+
+                if (movie.equals("drive")) {
+                    runOnUiThread(() -> {
+                        driveTv.setVisibility(View.VISIBLE);
+                        movieEt.setText("");
+                        counter[0]++;
+                    });
+                }
+
+                try {
+                    Thread.sleep(100);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
-            bateman.setImageResource(R.mipmap.gosling);
-            joker.setImageResource(R.mipmap.durden);
-            gosling.setImageResource(R.mipmap.joker);
-            durden.setImageResource(R.mipmap.bateman);
-
-            entry[0] = false;
-            entry[1] = true;
-            entry[2] = false;
-            entry[3] = false;
-        });
-
-        gosling.setOnClickListener(view -> {
-            if (entry[2]) {
-                startActivity(new Intent(this, GoslingActivity.class));
-                return;
-            }
-            bateman.setImageResource(R.mipmap.durden);
-            joker.setImageResource(R.mipmap.bateman);
-            gosling.setImageResource(R.mipmap.gosling);
-            durden.setImageResource(R.mipmap.joker);
-
-            entry[0] = false;
-            entry[1] = false;
-            entry[2] = true;
-            entry[3] = false;
-        });
-
-        durden.setOnClickListener(view -> {
-            if (entry[3]) {
-                startActivity(new Intent());
-                return;
-            }
-            bateman.setImageResource(R.mipmap.bateman);
-            joker.setImageResource(R.mipmap.joker);
-            gosling.setImageResource(R.mipmap.bateman);
-            durden.setImageResource(R.mipmap.gosling);
-
-            entry[0] = false;
-            entry[1] = false;
-            entry[2] = false;
-            entry[3] = true;
-        });
+        }).start();
 
         mContentView.setOnClickListener(view -> toggle());
 
         binding.dummyButton.setOnTouchListener(mDelayHideTouchListener);
-        binding.dummyButton.setOnClickListener(view -> Toast.makeText(this, getString(R.string.paul), Toast.LENGTH_SHORT).show());
+        binding.dummyButton.setOnClickListener(view -> {
+            if (counter[0] == 2) {
+                super.onBackPressed();
+            } else {
+                counter[1] = -1;
+            }
+        });
     }
 
     @Override

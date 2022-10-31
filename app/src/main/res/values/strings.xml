@@ -19,4 +19,8 @@
     <string name="paul">Let\'s see Paul Alen\'s card</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
 
+    <string name="gru">Gru with gun meme</string>
+    <string name="movie">Write movie title</string>
+    <string name="blade_runner">Blade Runner 2049</string>
+    <string name="drive">Drive</string>
 </resources>
