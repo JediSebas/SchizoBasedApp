@@ -6,5 +6,17 @@
 
     <string name="title_activity_anti_babylon">AntiBabylon</string>
     <string name="anti_babylon_image">Anti Babylon Image</string>
+    <string name="antichrist">Can you troll the Antichrist?</string>
+
+    <string name="title_activity_literally_me">Who is literally me?</string>
+    <string name="click">CLICK</string>
+    <string name="literally">LITERALLY</string>
+    <string name="me">ME</string>
+    <string name="bateman">Patrick Bateman</string>
+    <string name="joker">Joker</string>
+    <string name="gosling">Ryan Gosling</string>
+    <string name="durden">Tyler Durden</string>
+    <string name="paul">Let\'s see Paul Alen\'s card</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
+
 </resources>

@@ -13,11 +13,12 @@ import android.os.Looper;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowInsets;
-import android.widget.DatePicker;
+import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.jedisebas.schizobasedapp.databinding.ActivityAntiBabylonBinding;
-public class AntiBabylonActivity extends AppCompatActivity {
+import com.jedisebas.schizobasedapp.databinding.ActivityLiterallyMeBinding;
+
+public class LiterallyMeActivity extends AppCompatActivity {
 
     private static final boolean AUTO_HIDE = true;
     private static final int AUTO_HIDE_DELAY_MILLIS = 3000;
@@ -47,7 +48,7 @@ public class AntiBabylonActivity extends AppCompatActivity {
     private final Runnable mShowPart2Runnable = new Runnable() {
         @Override
         public void run() {
-            ActionBar actionBar = getSupportActionBar();
+            final ActionBar actionBar = getSupportActionBar();
             if (actionBar != null) {
                 actionBar.show();
             }
@@ -78,27 +79,90 @@ public class AntiBabylonActivity extends AppCompatActivity {
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        final ActivityAntiBabylonBinding binding = ActivityAntiBabylonBinding.inflate(getLayoutInflater());
+        final ActivityLiterallyMeBinding binding = ActivityLiterallyMeBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         mVisible = true;
         mControlsView = binding.fullscreenContentControls;
         mContentView = binding.fullscreenContent;
 
-        final DatePicker datePicker = binding.antiBabylonDp;
+        binding.meTv.setOnClickListener(view -> Toast.makeText(this, "Ok, you got it", Toast.LENGTH_SHORT).show());
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            datePicker.setOnDateChangedListener((picker, i, i1, i2) -> {
-                if (picker.getYear() == 2022 && picker.getMonth() == 2 && picker.getDayOfMonth() == 30) {
-                    startActivity(new Intent(this, LiterallyMeActivity.class));
-                }
-            });
-        }
+        final ImageView bateman = binding.batemanIv;
+        final ImageView joker = binding.jokerIv;
+        final ImageView gosling = binding.goslingIv;
+        final ImageView durden = binding.durdenIv;
+
+        final boolean[] entry = new boolean[] {false, false, false, false};
+
+        bateman.setOnClickListener(view -> {
+            if (entry[0]) {
+                startActivity(new Intent(this, BatemanActivity.class));
+                return;
+            }
+            bateman.setImageResource(R.mipmap.joker);
+            joker.setImageResource(R.mipmap.gosling);
+            gosling.setImageResource(R.mipmap.durden);
+            durden.setImageResource(R.mipmap.bateman);
+
+            entry[0] = true;
+            entry[1] = false;
+            entry[2] = false;
+            entry[3] = false;
+        });
+
+        joker.setOnClickListener(view -> {
+            if (entry[1]) {
+                startActivity(new Intent());
+                return;
+            }
+            bateman.setImageResource(R.mipmap.gosling);
+            joker.setImageResource(R.mipmap.durden);
+            gosling.setImageResource(R.mipmap.joker);
+            durden.setImageResource(R.mipmap.bateman);
+
+            entry[0] = false;
+            entry[1] = true;
+            entry[2] = false;
+            entry[3] = false;
+        });
+
+        gosling.setOnClickListener(view -> {
+            if (entry[2]) {
+                startActivity(new Intent());
+                return;
+            }
+            bateman.setImageResource(R.mipmap.durden);
+            joker.setImageResource(R.mipmap.bateman);
+            gosling.setImageResource(R.mipmap.gosling);
+            durden.setImageResource(R.mipmap.joker);
+
+            entry[0] = false;
+            entry[1] = false;
+            entry[2] = true;
+            entry[3] = false;
+        });
+
+        durden.setOnClickListener(view -> {
+            if (entry[3]) {
+                startActivity(new Intent());
+                return;
+            }
+            bateman.setImageResource(R.mipmap.bateman);
+            joker.setImageResource(R.mipmap.joker);
+            gosling.setImageResource(R.mipmap.bateman);
+            durden.setImageResource(R.mipmap.gosling);
+
+            entry[0] = false;
+            entry[1] = false;
+            entry[2] = false;
+            entry[3] = true;
+        });
 
         mContentView.setOnClickListener(view -> toggle());
 
-        binding.dummyBtn.setOnTouchListener(mDelayHideTouchListener);
-        binding.dummyBtn.setOnClickListener(view -> Toast.makeText(this, getString(R.string.antichrist), Toast.LENGTH_SHORT).show());
+        binding.dummyButton.setOnTouchListener(mDelayHideTouchListener);
+        binding.dummyButton.setOnClickListener(view -> Toast.makeText(this, getString(R.string.paul), Toast.LENGTH_SHORT).show());
     }
 
     @Override

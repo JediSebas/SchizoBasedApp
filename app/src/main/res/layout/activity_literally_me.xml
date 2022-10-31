@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/fullscreenBackgroundColor"
+    android:theme="@style/ThemeOverlay.SchizoBasedApp.FullscreenContainer"
+    tools:context=".LiterallyMeActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/fullscreenContent"
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/textLy"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_weight="1"
+                android:text="@string/click"
+                android:textSize="24sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/literally"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/meTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/me"
+                android:textSize="24sp" />
+
+        </LinearLayout>
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textLy">
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/batemanIv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:src="@mipmap/bateman"
+                    android:contentDescription="@string/bateman"
+                    tools:ignore="ImageContrastCheck" />
+
+                <ImageView
+                    android:id="@+id/jokerIv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:src="@mipmap/joker"
+                    android:contentDescription="@string/joker" />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/goslingIv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:src="@mipmap/gosling"
+                    android:contentDescription="@string/gosling" />
+
+                <ImageView
+                    android:id="@+id/durdenIv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:src="@mipmap/durden"
+                    android:contentDescription="@string/durden"
+                    tools:ignore="ImageContrastCheck" />
+
+            </TableRow>
+
+        </TableLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true">
+
+        <LinearLayout
+            android:id="@+id/fullscreen_content_controls"
+            style="@style/Widget.Theme.SchizoBasedApp.ButtonBar.Fullscreen"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center_horizontal"
+            android:orientation="horizontal"
+            tools:ignore="UselessParent">
+
+            <Button
+                android:id="@+id/dummy_button"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/dummy_button"
+                android:textColor="#80D8FF"
+                tools:ignore="DuplicateSpeakableTextCheck" />
+
+        </LinearLayout>
+    </FrameLayout>
+
+</FrameLayout>

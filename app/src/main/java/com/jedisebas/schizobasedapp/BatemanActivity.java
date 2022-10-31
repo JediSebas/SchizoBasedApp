@@ -5,7 +5,7 @@ import android.annotation.SuppressLint;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -13,11 +13,10 @@ import android.os.Looper;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowInsets;
-import android.widget.DatePicker;
-import android.widget.Toast;
 
-import com.jedisebas.schizobasedapp.databinding.ActivityAntiBabylonBinding;
-public class AntiBabylonActivity extends AppCompatActivity {
+import com.jedisebas.schizobasedapp.databinding.ActivityBatemanBinding;
+
+public class BatemanActivity extends AppCompatActivity {
 
     private static final boolean AUTO_HIDE = true;
     private static final int AUTO_HIDE_DELAY_MILLIS = 3000;
@@ -47,7 +46,7 @@ public class AntiBabylonActivity extends AppCompatActivity {
     private final Runnable mShowPart2Runnable = new Runnable() {
         @Override
         public void run() {
-            ActionBar actionBar = getSupportActionBar();
+            final ActionBar actionBar = getSupportActionBar();
             if (actionBar != null) {
                 actionBar.show();
             }
@@ -78,27 +77,20 @@ public class AntiBabylonActivity extends AppCompatActivity {
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        final ActivityAntiBabylonBinding binding = ActivityAntiBabylonBinding.inflate(getLayoutInflater());
+        final ActivityBatemanBinding binding = ActivityBatemanBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         mVisible = true;
         mControlsView = binding.fullscreenContentControls;
         mContentView = binding.fullscreenContent;
 
-        final DatePicker datePicker = binding.antiBabylonDp;
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            datePicker.setOnDateChangedListener((picker, i, i1, i2) -> {
-                if (picker.getYear() == 2022 && picker.getMonth() == 2 && picker.getDayOfMonth() == 30) {
-                    startActivity(new Intent(this, LiterallyMeActivity.class));
-                }
-            });
-        }
+        binding.fullscreenContent.setVideoURI(Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.paul_death));
+        binding.fullscreenContent.start();
 
         mContentView.setOnClickListener(view -> toggle());
 
-        binding.dummyBtn.setOnTouchListener(mDelayHideTouchListener);
-        binding.dummyBtn.setOnClickListener(view -> Toast.makeText(this, getString(R.string.antichrist), Toast.LENGTH_SHORT).show());
+        binding.dummyButton.setOnTouchListener(mDelayHideTouchListener);
+        binding.dummyButton.setOnClickListener(view -> super.onBackPressed());
     }
 
     @Override
