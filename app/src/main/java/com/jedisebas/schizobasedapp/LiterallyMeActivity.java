@@ -145,7 +145,7 @@ public class LiterallyMeActivity extends AppCompatActivity {
 
         durden.setOnClickListener(view -> {
             if (entry[3]) {
-                startActivity(new Intent());
+                startActivity(new Intent(this, DurdenActivity.class));
                 return;
             }
             bateman.setImageResource(R.mipmap.bateman);

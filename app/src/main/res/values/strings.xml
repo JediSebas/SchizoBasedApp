@@ -23,4 +23,21 @@
     <string name="movie">Write movie title</string>
     <string name="blade_runner">Blade Runner 2049</string>
     <string name="drive">Drive</string>
+    <string name="finish_job">FINISH YOUR JOB</string>
+
+    <string name="glycerine">C₂H₅(OH)₃</string>
+    <string name="nitric_acidV">HNO₃</string>
+    <string name="nitric_acidIII">HNO₂</string>
+    <string name="sodium_nitrateV">NaNO₃</string>
+    <string name="sodium_nitrateIII">NaNO₂</string>
+    <string name="nitroglycerin">C₂H₅(NO₃)₃</string>
+    <string name="water">H₂O</string>
+    <string name="sawdust">SAWDUST</string>
+    <string name="tnt">TNT</string>
+    <string name="sodium">Na</string>
+    <string name="sodium_hydroxide">NaOH</string>
+    <string name="nitro">N</string>
+    <string name="oxygen">O₂</string>
+    <string name="nitric_oxide">N₂O₅</string>
+    <string name="nitric_oxide2">N₂O₃</string>
 </resources>

@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/fullscreenBackgroundColor"
+    android:theme="@style/ThemeOverlay.SchizoBasedApp.FullscreenContainer"
+    tools:context=".DurdenActivity">
+
+    <LinearLayout
+        android:id="@+id/fullscreen_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:keepScreenOn="true"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="horizontal"
+                tools:ignore="NestedWeights">
+
+                <TextView
+                    android:id="@+id/glycerineTv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="22sp"
+                    android:layout_marginEnd="30dp"
+                    android:text="@string/glycerine"/>
+
+                <TextView
+                    android:id="@+id/nitroTv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="22sp"
+                    android:layout_marginEnd="30dp"
+                    android:text="@string/nitro"/>
+
+                <TextView
+                    android:id="@+id/oxygenTv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="22sp"
+                    android:layout_marginEnd="30dp"
+                    android:text="@string/oxygen"/>
+
+                <TextView
+                    android:id="@+id/waterTv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="22sp"
+                    android:layout_marginEnd="30dp"
+                    android:text="@string/water"/>
+
+                <TextView
+                    android:id="@+id/nitricOxideTv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="22sp"
+                    android:layout_marginEnd="30dp"
+                    android:visibility="gone"
+                    android:text="@string/nitric_oxide"/>
+
+                <TextView
+                    android:id="@+id/sodiumHydroxideTv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="22sp"
+                    android:layout_marginEnd="30dp"
+                    android:visibility="gone"
+                    android:text="@string/sodium_hydroxide"/>
+
+                <TextView
+                    android:id="@+id/nitroglycerinTv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="22sp"
+                    android:layout_marginEnd="30dp"
+                    android:visibility="gone"
+                    android:text="@string/nitroglycerin"/>
+
+                <TextView
+                    android:id="@+id/sodiumTv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="22sp"
+                    android:layout_marginEnd="30dp"
+                    android:text="@string/sodium"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/sawdustTv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="22sp"
+                    android:layout_marginEnd="30dp"
+                    android:text="@string/sawdust"/>
+
+                <TextView
+                    android:id="@+id/nitricAcidVTv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="22sp"
+                    android:layout_marginEnd="30dp"
+                    android:visibility="gone"
+                    android:text="@string/nitric_acidV"/>
+
+                <TextView
+                    android:id="@+id/sodiumNitrateVTv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="22sp"
+                    android:layout_marginEnd="30dp"
+                    android:visibility="gone"
+                    android:text="@string/sodium_nitrateV"/>
+
+                <TextView
+                    android:id="@+id/nitricAcidIIITv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="22sp"
+                    android:layout_marginEnd="30dp"
+                    android:visibility="gone"
+                    android:text="@string/nitric_acidIII"/>
+
+                <TextView
+                    android:id="@+id/sodiumNitrateIIITv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="22sp"
+                    android:layout_marginEnd="30dp"
+                    android:visibility="gone"
+                    android:text="@string/sodium_nitrateIII"/>
+
+                <TextView
+                    android:id="@+id/tntTv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="22sp"
+                    android:layout_marginEnd="30dp"
+                    android:visibility="gone"
+                    android:text="@string/tnt"/>
+
+                <TextView
+                    android:id="@+id/nitricOxide2Tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="22sp"
+                    android:layout_marginEnd="30dp"
+                    android:visibility="gone"
+                    android:text="@string/nitric_oxide2"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/substrateOneTv"
+                android:layout_width="150dp"
+                android:layout_height="100dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:gravity="center_vertical|center_horizontal"
+                android:textSize="22sp"
+                android:textColor="@color/white"
+                android:background="@drawable/substrate_background" />
+
+            <View
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:background="@android:drawable/ic_input_add" />
+
+            <TextView
+                android:id="@+id/substrateTwoTv"
+                android:layout_width="150dp"
+                android:layout_height="100dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:gravity="center_vertical|center_horizontal"
+                android:textSize="22sp"
+                android:textColor="@color/white"
+                android:background="@drawable/substrate_background" />
+
+            <View
+                android:id="@+id/secondPlusView"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:visibility="gone"
+                android:background="@android:drawable/ic_input_add" />
+
+            <TextView
+                android:id="@+id/substrateThreeTv"
+                android:layout_width="150dp"
+                android:layout_height="100dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:visibility="gone"
+                android:gravity="center_vertical|center_horizontal"
+                android:textSize="22sp"
+                android:textColor="@color/white"
+                android:background="@drawable/substrate_background" />
+
+            <View
+                android:id="@+id/arrowRightView"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:background="@mipmap/arrow_right" />
+
+            <TextView
+                android:id="@+id/productTv"
+                android:layout_width="150dp"
+                android:layout_height="100dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:gravity="center_vertical|center_horizontal"
+                android:textSize="22sp"
+                android:textColor="@color/white"
+                android:background="@drawable/substrate_background" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true">
+
+        <LinearLayout
+            android:id="@+id/fullscreen_content_controls"
+            style="@style/Widget.Theme.SchizoBasedApp.ButtonBar.Fullscreen"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center_horizontal"
+            android:orientation="horizontal"
+            tools:ignore="UselessParent">
+
+            <Button
+                android:id="@+id/dummy_button"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/dummy_button" />
+
+        </LinearLayout>
+    </FrameLayout>
+
+</FrameLayout>

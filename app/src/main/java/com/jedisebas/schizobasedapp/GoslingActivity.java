@@ -15,6 +15,7 @@ import android.view.WindowInsets;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.jedisebas.schizobasedapp.databinding.ActivityGoslingBinding;
 
@@ -149,9 +150,10 @@ public class GoslingActivity extends AppCompatActivity {
 
         binding.dummyButton.setOnTouchListener(mDelayHideTouchListener);
         binding.dummyButton.setOnClickListener(view -> {
-            if (counter[0] == 2) {
+            if (counter[0] >= 2) {
                 super.onBackPressed();
             } else {
+                Toast.makeText(this, getString(R.string.finish_job), Toast.LENGTH_SHORT).show();
                 counter[1] = -1;
             }
         });
