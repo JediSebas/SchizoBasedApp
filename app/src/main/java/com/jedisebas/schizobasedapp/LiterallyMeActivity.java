@@ -18,6 +18,8 @@ import android.widget.Toast;
 
 import com.jedisebas.schizobasedapp.databinding.ActivityLiterallyMeBinding;
 
+import java.util.Random;
+
 public class LiterallyMeActivity extends AppCompatActivity {
 
     private static final boolean AUTO_HIDE = true;
@@ -88,22 +90,23 @@ public class LiterallyMeActivity extends AppCompatActivity {
 
         binding.meTv.setOnClickListener(view -> Toast.makeText(this, "Ok, you got it", Toast.LENGTH_SHORT).show());
 
-        final ImageView bateman = binding.batemanIv;
-        final ImageView joker = binding.jokerIv;
-        final ImageView gosling = binding.goslingIv;
-        final ImageView durden = binding.durdenIv;
+        final int[] imageResources = {R.mipmap.joker, R.mipmap.gosling, R.mipmap.durden, R.mipmap.bateman};
+        final ImageView[] imageViews = new ImageView[imageResources.length];
+
+        imageViews[0] = binding.batemanIv;
+        imageViews[1] = binding.jokerIv;
+        imageViews[2] = binding.goslingIv;
+        imageViews[3] = binding.durdenIv;
 
         final boolean[] entry = new boolean[] {false, false, false, false};
 
-        bateman.setOnClickListener(view -> {
+        imageViews[0].setOnClickListener(view -> {
             if (entry[0]) {
                 startActivity(new Intent(this, BatemanActivity.class));
                 return;
             }
-            bateman.setImageResource(R.mipmap.joker);
-            joker.setImageResource(R.mipmap.gosling);
-            gosling.setImageResource(R.mipmap.durden);
-            durden.setImageResource(R.mipmap.bateman);
+
+            setRandomImages(imageViews, imageResources);
 
             entry[0] = true;
             entry[1] = false;
@@ -111,15 +114,13 @@ public class LiterallyMeActivity extends AppCompatActivity {
             entry[3] = false;
         });
 
-        joker.setOnClickListener(view -> {
+        imageViews[1].setOnClickListener(view -> {
             if (entry[1]) {
                 startActivity(new Intent());
                 return;
             }
-            bateman.setImageResource(R.mipmap.gosling);
-            joker.setImageResource(R.mipmap.durden);
-            gosling.setImageResource(R.mipmap.joker);
-            durden.setImageResource(R.mipmap.bateman);
+
+            setRandomImages(imageViews, imageResources);
 
             entry[0] = false;
             entry[1] = true;
@@ -127,15 +128,13 @@ public class LiterallyMeActivity extends AppCompatActivity {
             entry[3] = false;
         });
 
-        gosling.setOnClickListener(view -> {
+        imageViews[2].setOnClickListener(view -> {
             if (entry[2]) {
                 startActivity(new Intent(this, GoslingActivity.class));
                 return;
             }
-            bateman.setImageResource(R.mipmap.durden);
-            joker.setImageResource(R.mipmap.bateman);
-            gosling.setImageResource(R.mipmap.gosling);
-            durden.setImageResource(R.mipmap.joker);
+
+            setRandomImages(imageViews, imageResources);
 
             entry[0] = false;
             entry[1] = false;
@@ -143,15 +142,13 @@ public class LiterallyMeActivity extends AppCompatActivity {
             entry[3] = false;
         });
 
-        durden.setOnClickListener(view -> {
+        imageViews[3].setOnClickListener(view -> {
             if (entry[3]) {
                 startActivity(new Intent(this, DurdenActivity.class));
                 return;
             }
-            bateman.setImageResource(R.mipmap.bateman);
-            joker.setImageResource(R.mipmap.joker);
-            gosling.setImageResource(R.mipmap.bateman);
-            durden.setImageResource(R.mipmap.gosling);
+
+            setRandomImages(imageViews, imageResources);
 
             entry[0] = false;
             entry[1] = false;
@@ -169,6 +166,12 @@ public class LiterallyMeActivity extends AppCompatActivity {
     protected void onPostCreate(final Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
         delayedHide(100);
+    }
+
+    private void setRandomImages(final ImageView[] imageViews, final int[] imageResources) {
+        for (final ImageView image: imageViews) {
+            image.setImageResource(imageResources[new Random().nextInt(imageResources.length)]);
+        }
     }
 
     private void toggle() {
