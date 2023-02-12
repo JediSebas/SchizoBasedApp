@@ -124,19 +124,11 @@ public class GoslingActivity extends AppCompatActivity {
             while (true) {
                 final String movie = movieEt.getText().toString().trim().toLowerCase();
                 if (movie.equals("blade runner 2049")) {
-                    runOnUiThread(() -> {
-                        bladeTv.setVisibility(View.VISIBLE);
-                        movieEt.setText("");
-                        guessed[0] = true;
-                    });
+                    runOnUiThread(() -> setGoodGuess(bladeTv, movieEt, 0, guessed));
                 }
 
                 if (movie.equals("drive")) {
-                    runOnUiThread(() -> {
-                        driveTv.setVisibility(View.VISIBLE);
-                        movieEt.setText("");
-                        guessed[1] = true;
-                    });
+                    runOnUiThread(() -> setGoodGuess(driveTv, movieEt, 1, guessed));
                 }
 
                 try {
@@ -173,6 +165,12 @@ public class GoslingActivity extends AppCompatActivity {
             }
         }
         return true;
+    }
+
+    private void setGoodGuess(final TextView titleTv, final EditText inputEt, final int code, final boolean[] guessed) {
+        titleTv.setVisibility(View.VISIBLE);
+        inputEt.setText("");
+        guessed[code] = true;
     }
 
     private void toggle() {
