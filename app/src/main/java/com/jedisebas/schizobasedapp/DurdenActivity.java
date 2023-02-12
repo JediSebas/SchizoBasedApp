@@ -89,7 +89,6 @@ public class DurdenActivity extends AppCompatActivity {
     private TextView nitricOxide2Tv;
 
     private TextView substrateThreeTv;
-    private TextView productTv;
 
     private View secondPlusView;
     private View arrowRightView;
@@ -129,7 +128,7 @@ public class DurdenActivity extends AppCompatActivity {
         final TextView substrateTwoTv = findViewById(R.id.substrateTwoTv);
         substrateThreeTv = findViewById(R.id.substrateThreeTv);
 
-        productTv = findViewById(R.id.productTv);
+        final TextView productTv = findViewById(R.id.productTv);
 
         secondPlusView = findViewById(R.id.secondPlusView);
         arrowRightView = findViewById(R.id.arrowRightView);
@@ -270,11 +269,7 @@ public class DurdenActivity extends AppCompatActivity {
             mainGot[1] = true;
         }
 
-        for (boolean b : mainGot) {
-            if (!b) {
-                break;
-            }
-
+        if (mainGot[0] && mainGot[1]) {
             substrateThreeTv.setVisibility(View.VISIBLE);
             secondPlusView.setVisibility(View.VISIBLE);
             arrowRightView.setVisibility(View.GONE);
