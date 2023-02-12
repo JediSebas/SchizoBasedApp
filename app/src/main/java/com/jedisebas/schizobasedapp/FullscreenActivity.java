@@ -77,8 +77,8 @@ public class FullscreenActivity extends AppCompatActivity {
 
     private Button[] buttonsOne;
     private Button[] buttonsTwo;
-    private String code = "";
-    private final String correctCode = "2971";
+    private StringBuilder code = new StringBuilder();
+    private static final String CORRECT_CODE = "2971";
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
@@ -102,7 +102,7 @@ public class FullscreenActivity extends AppCompatActivity {
         buttonsTwo = new Button[] {fog2, fog4, fog6, fog8};
 
         fog1.setOnClickListener(view -> {
-            code += "1";
+            code.append("1");
 
             if (code.length() != 4) {
                 resetCode();
@@ -117,7 +117,7 @@ public class FullscreenActivity extends AppCompatActivity {
         });
 
         fog2.setOnClickListener(view -> {
-            code += "2";
+            code.append("2");
 
             if (code.length() != 1) {
                 resetCode();
@@ -136,7 +136,7 @@ public class FullscreenActivity extends AppCompatActivity {
         fog6.setOnClickListener(view -> resetCode());
 
         fog7.setOnClickListener(view -> {
-            code += "7";
+            code.append("7");
 
             if (code.length() != 3) {
                 resetCode();
@@ -149,7 +149,7 @@ public class FullscreenActivity extends AppCompatActivity {
         fog8.setOnClickListener(view -> resetCode());
 
         fog9.setOnClickListener(view -> {
-            code += "9";
+            code.append("9");
 
             if (code.length() != 2) {
                 resetCode();
@@ -219,11 +219,11 @@ public class FullscreenActivity extends AppCompatActivity {
     }
 
     private void resetCode() {
-        code = "";
+        code = new StringBuilder();
     }
 
     private boolean checkCodeOne() {
-        if (code.charAt(0) != correctCode.charAt(0)) {
+        if (code.charAt(0) != CORRECT_CODE.charAt(0)) {
             resetCode();
             return true;
         }
@@ -233,7 +233,7 @@ public class FullscreenActivity extends AppCompatActivity {
 
     private boolean checkCodeTwo() {
         if (!checkCodeOne()) {
-            if (code.charAt(1) != correctCode.charAt(1)) {
+            if (code.charAt(1) != CORRECT_CODE.charAt(1)) {
                 resetCode();
                 return true;
             }
@@ -244,7 +244,7 @@ public class FullscreenActivity extends AppCompatActivity {
 
     private boolean checkCodeThree() {
         if (!checkCodeTwo()) {
-            if (code.charAt(2) != correctCode.charAt(2)) {
+            if (code.charAt(2) != CORRECT_CODE.charAt(2)) {
                 resetCode();
                 return true;
             }
@@ -255,7 +255,7 @@ public class FullscreenActivity extends AppCompatActivity {
 
     private boolean checkCodeFour() {
         if (!checkCodeThree()) {
-            if (code.charAt(3) != correctCode.charAt(3)) {
+            if (code.charAt(3) != CORRECT_CODE.charAt(3)) {
                 resetCode();
                 return true;
             }
