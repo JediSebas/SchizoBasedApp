@@ -5,6 +5,7 @@ import android.annotation.SuppressLint;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -18,6 +19,8 @@ import android.widget.Toast;
 
 import com.jedisebas.schizobasedapp.databinding.ActivityLiterallyMeBinding;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Random;
 
 public class LiterallyMeActivity extends AppCompatActivity {
@@ -90,71 +93,16 @@ public class LiterallyMeActivity extends AppCompatActivity {
 
         binding.meTv.setOnClickListener(view -> Toast.makeText(this, "Ok, you got it", Toast.LENGTH_SHORT).show());
 
-        final int[] imageResources = {R.mipmap.joker, R.mipmap.gosling, R.mipmap.durden, R.mipmap.bateman};
-        final ImageView[] imageViews = new ImageView[imageResources.length];
+        final MyPersonality bateman = new MyPersonality(R.mipmap.bateman, binding.batemanIv, BatemanActivity.class, this);
+        final MyPersonality joker = new MyPersonality(R.mipmap.joker, binding.jokerIv, BatemanActivity.class, this);
+        final MyPersonality gosling = new MyPersonality(R.mipmap.gosling, binding.goslingIv, GoslingActivity.class, this);
+        final MyPersonality durden = new MyPersonality(R.mipmap.durden, binding.durdenIv, DurdenActivity.class, this);
 
-        imageViews[0] = binding.batemanIv;
-        imageViews[1] = binding.jokerIv;
-        imageViews[2] = binding.goslingIv;
-        imageViews[3] = binding.durdenIv;
+        MyAllPersonalities.initialize(bateman, joker, gosling, durden);
 
-        final boolean[] entry = new boolean[] {false, false, false, false};
-
-        imageViews[0].setOnClickListener(view -> {
-            if (entry[0]) {
-                startActivity(new Intent(this, BatemanActivity.class));
-                return;
-            }
-
-            setRandomImages(imageViews, imageResources);
-
-            entry[0] = true;
-            entry[1] = false;
-            entry[2] = false;
-            entry[3] = false;
-        });
-
-        imageViews[1].setOnClickListener(view -> {
-            if (entry[1]) {
-                startActivity(new Intent());
-                return;
-            }
-
-            setRandomImages(imageViews, imageResources);
-
-            entry[0] = false;
-            entry[1] = true;
-            entry[2] = false;
-            entry[3] = false;
-        });
-
-        imageViews[2].setOnClickListener(view -> {
-            if (entry[2]) {
-                startActivity(new Intent(this, GoslingActivity.class));
-                return;
-            }
-
-            setRandomImages(imageViews, imageResources);
-
-            entry[0] = false;
-            entry[1] = false;
-            entry[2] = true;
-            entry[3] = false;
-        });
-
-        imageViews[3].setOnClickListener(view -> {
-            if (entry[3]) {
-                startActivity(new Intent(this, DurdenActivity.class));
-                return;
-            }
-
-            setRandomImages(imageViews, imageResources);
-
-            entry[0] = false;
-            entry[1] = false;
-            entry[2] = false;
-            entry[3] = true;
-        });
+        for (final MyPersonality personality : MyAllPersonalities.personalities) {
+            personality.onClicked();
+        }
 
         mContentView.setOnClickListener(view -> toggle());
 
@@ -166,12 +114,6 @@ public class LiterallyMeActivity extends AppCompatActivity {
     protected void onPostCreate(final Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
         delayedHide(100);
-    }
-
-    private void setRandomImages(final ImageView[] imageViews, final int[] imageResources) {
-        for (final ImageView image: imageViews) {
-            image.setImageResource(imageResources[new Random().nextInt(imageResources.length)]);
-        }
     }
 
     private void toggle() {
@@ -211,5 +153,84 @@ public class LiterallyMeActivity extends AppCompatActivity {
     private void delayedHide(final int delayMillis) {
         mHideHandler.removeCallbacks(mHideRunnable);
         mHideHandler.postDelayed(mHideRunnable, delayMillis);
+    }
+    
+    private class MyPersonality {
+        private final int imageResource;
+        private final ImageView imageView;
+        private final Class<?> aClass;
+        private final Context context;
+        private boolean entry;
+        
+        MyPersonality(final int imageResource, final ImageView imageView,
+                      final Class<?> aClass, final Context context) {
+            this.imageResource = imageResource;
+            this.imageView = imageView;
+            this.aClass = aClass;
+            this.context = context;
+            this.entry = false;
+        }
+
+        public void onClicked() {
+            imageView.setOnClickListener(view -> {
+                if (entry) {
+                    startActivity(new Intent(context, aClass));
+                    return;
+                }
+
+                setRandomImages(MyAllPersonalities.getImageViews(), MyAllPersonalities.getImageResources());
+                MyAllPersonalities.setEntriesFalse();
+                entry = true;
+            });
+        }
+
+        private void setRandomImages(final ArrayList<ImageView> imageViews, final ArrayList<Integer> imageResources) {
+            for (final ImageView image: imageViews) {
+                image.setImageResource(imageResources.get(new Random().nextInt(imageResources.size())));
+            }
+        }
+
+        public int getImageResource() {
+            return imageResource;
+        }
+        
+        public ImageView getImageView() {
+            return imageView;
+        }
+
+        public void setEntry(final boolean entry) {
+            this.entry = entry;
+        }
+    }
+    
+    private static class MyAllPersonalities {
+
+        public static ArrayList<MyPersonality> personalities;
+
+        public static void initialize(final MyPersonality ... myPersonalities) {
+            personalities = new ArrayList<>(Arrays.asList(myPersonalities));
+        }
+
+        public static ArrayList<Integer> getImageResources() {
+            final ArrayList<Integer> resources = new ArrayList<>();
+            for (final MyPersonality personality : personalities) {
+                resources.add(personality.getImageResource());
+            }
+            return resources;
+        }
+
+        public static ArrayList<ImageView> getImageViews() {
+            final ArrayList<ImageView> views = new ArrayList<>();
+            for (final MyPersonality personality : personalities) {
+                views.add(personality.getImageView());
+            }
+            return views;
+        }
+
+        public static void setEntriesFalse() {
+            for (final MyPersonality personality : personalities) {
+                personality.setEntry(false);
+            }
+        }
     }
 }
