@@ -93,11 +93,12 @@ public class GoslingActivity extends AppCompatActivity {
         final TextView bladeTv = binding.bladeTv;
         final TextView driveTv = binding.driveTv;
 
-        final int[] counter = {0, 0};
+        final boolean[] guessed = {false, false};
+        final boolean[] flag = {false};
 
         Thread t = new Thread(() -> {
             while (true) {
-                if (counter[1] == -1) {
+                if (flag[0]) {
                     runOnUiThread(() -> image.setImageResource(R.mipmap.no_back));
                     break;
                 } else {
@@ -126,7 +127,7 @@ public class GoslingActivity extends AppCompatActivity {
                     runOnUiThread(() -> {
                         bladeTv.setVisibility(View.VISIBLE);
                         movieEt.setText("");
-                        counter[0]++;
+                        guessed[0] = true;
                     });
                 }
 
@@ -134,7 +135,7 @@ public class GoslingActivity extends AppCompatActivity {
                     runOnUiThread(() -> {
                         driveTv.setVisibility(View.VISIBLE);
                         movieEt.setText("");
-                        counter[0]++;
+                        guessed[1] = true;
                     });
                 }
 
@@ -150,11 +151,11 @@ public class GoslingActivity extends AppCompatActivity {
 
         binding.dummyButton.setOnTouchListener(mDelayHideTouchListener);
         binding.dummyButton.setOnClickListener(view -> {
-            if (counter[0] >= 2) {
+            if (canEscape(guessed)) {
                 super.onBackPressed();
             } else {
                 Toast.makeText(this, getString(R.string.finish_job), Toast.LENGTH_SHORT).show();
-                counter[1] = -1;
+                flag[0] = true;
             }
         });
     }
@@ -163,6 +164,15 @@ public class GoslingActivity extends AppCompatActivity {
     protected void onPostCreate(final Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
         delayedHide(100);
+    }
+
+    private boolean canEscape(final boolean[] guessed) {
+        for (final boolean b: guessed) {
+            if (!b) {
+                return false;
+            }
+        }
+        return true;
     }
 
     private void toggle() {
